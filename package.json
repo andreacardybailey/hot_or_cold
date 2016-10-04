@@ -1,0 +1,39 @@
+{
+  "name": "hot_or_cold_actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.jsx",
+  "scripts": {
+    "mkdir": "mkdir -p build",
+    "build": "npm run clean && npm run mkdir && npm run build:html && npm run build:js",
+    "watch": "npm run watch:html && npm run watch:js",
+    "clean": "rm -rf build",
+    "build:html": "npm run clean:html && cp index.html build/",
+    "watch:html": "npm run build:html && chokidar index.html -c 'npm run build:html'",
+    "clean:html": "rm -f build/index.html",
+    "build:js": "npm run clean:js && webpack",
+    "watch:js": "npm run build:js && webpack --watch",
+    "clean:js": "rm -f build/$npm_package_name.$npm_package_version.js build/$npm_package_name.$npm_package_version.js.map",
+    "test": "mocha --compilers js:babel-register assets/scripts/test/**/*.js*"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-register": "^6.16.3",
+    "chai": "^3.5.0",
+    "mocha": "^3.1.0",
+    "react-addons-test-utils": "^15.3.2",
+    "react-addons-update": "^15.3.2",
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-router": "^2.8.1",
+    "redux": "^3.6.0"
+  }
+}
